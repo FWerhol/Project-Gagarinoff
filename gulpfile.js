@@ -25,10 +25,10 @@ function tailwindCss() {
     cssnano()
   ];
 
-  return gulp.src('src/styles/main.css')  // ← один файл
+  return gulp.src('src/styles/style.css')
     .pipe(plumber())
     .pipe(postcss(plugins))
-    .pipe(gulp.dest('dist/styles/'))         // → dist/css/main.css
+    .pipe(gulp.dest('dist/styles/'))
     .pipe(browserSync.reload({stream: true}));
 }
 
