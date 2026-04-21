@@ -32,6 +32,12 @@ function tailwindCss() {
     .pipe(browserSync.reload({stream: true}));
 }
 
+function fonts() {
+  return gulp.src('src/fonts/**/*', { encoding: false })
+    .pipe(gulp.dest('dist/fonts'))
+    .pipe(browserSync.reload({ stream: true }));
+}
+
 function images() {
   // Копируем ВСЕ файлы из папки images
   return gulp.src('src/images/**/*', { encoding: false })
@@ -54,10 +60,11 @@ function watchFiles() {
   gulp.watch(['src/**/*.pug'], pug);
   gulp.watch(['src/styles/**/*.css'], tailwindCss); 
   gulp.watch(['src/images/**/*.{jpg,png,svg,gif,ico,webp,avif}'], images);
+  gulp.watch(['src/fonts/**/*'], fonts);
   gulp.watch(['tailwind.config.js'], tailwindCss);
 }
 
-const build = gulp.series(clean, gulp.parallel(pug, tailwindCss, images));
+const build = gulp.series(clean, gulp.parallel(pug, tailwindCss, images, fonts));
 const watchapp = gulp.parallel(build, watchFiles, serve);  
 
 exports.clean = clean;

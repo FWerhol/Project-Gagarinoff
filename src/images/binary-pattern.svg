@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="url(#pattern)" />
+  <defs>
+    <pattern id="pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <text x="2" y="12" font-family="monospace" font-size="10" fill="#34D399" opacity="0.08">0</text>
+      <text x="12" y="12" font-family="monospace" font-size="10" fill="#34D399" opacity="0.08">1</text>
+      <text x="2" y="20" font-family="monospace" font-size="10" fill="#34D399" opacity="0.06">1</text>
+      <text x="12" y="20" font-family="monospace" font-size="10" fill="#34D399" opacity="0.06">0</text>
+    </pattern>
+  </defs>
+  <rect width="100" height="100" fill="url(#pattern)" />
+</svg>

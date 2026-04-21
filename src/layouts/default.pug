@@ -1,11 +1,45 @@
 doctype html
 html(lang="ru")
   head
+    //- Charset & Viewport
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet" href="/styles/style.css")
-    title Сайты под ключ
-  body(class="flex flex-col min-h-screen bg-[var(--bg-primary)] text-[var(--text-color-primary)]")
+
+    //- Basic SEO
+    title Сайты под ключ — разработка и вёрстка сайтов
+    meta(name="description" content="Современные сайты на заказ. Быстрая вёрстка, адаптивность, SEO-оптимизация. Работа по всей России. Недорого и качественно.")
+    meta(name="keywords" content="разработка сайтов, вёрстка сайтов, сайт под ключ, лендинг, интернет-магазин, адаптивная вёрстка, SEO")
+    meta(name="author" content="Дмитрий Гагаринов")
+    meta(name="robots" content="index, follow")
+
+    //- Styles
+    link(rel="stylesheet" href="styles/style.css")
+
+    //- Open Graph / Social Media
+    meta(property="og:title" content="Сайты под ключ — разработка и вёрстка сайтов")
+    meta(property="og:description" content="Современные сайты на заказ. Быстрая вёрстка, адаптивность, SEO. Работа по всей России.")
+    meta(property="og:image" content="https://my-landing-new.onrender.com/images/og-preview.jpg")
+    meta(property="og:image:width" content="1200")
+    meta(property="og:image:height" content="630")
+    meta(property="og:url" content="https://my-landing-new.onrender.com/")
+    meta(property="og:type" content="website")
+    meta(property="og:site_name" content="Сайты под ключ")
+    meta(property="og:locale" content="ru_RU")
+
+    //- Twitter Card
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:title" content="Сайты под ключ — разработка и вёрстка сайтов")
+    meta(name="twitter:description" content="Современные сайты на заказ. Быстрая вёрстка, адаптивность, SEO.")
+    meta(name="twitter:image" content="https://my-landing-new.onrender.com/images/og-preview.jpg")
+
+    //- Favicon
+    link(rel="icon" type="image/svg+xml" href="images/favicon.svg")
+    link(rel="alternate icon" href="images/favicon.ico" sizes="any")
+
+    //- Canonical URL
+    link(rel="canonical" href="https://gagarinovdev.netlify.app/")
+
+  body(class="binary-svg-bg flex flex-col min-h-screen bg-[var(--bg-primary)] text-[var(--text-color-primary)]")
     include ../components/header/header
     main(class="flex-grow max-w-6xl w-full mx-auto px-4")
       block content

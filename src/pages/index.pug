@@ -1,4 +1,5 @@
 extends ../layouts/default.pug
+include ../components/card/card.mixin.pug
 
 block content
   // Приветственная секция
@@ -11,18 +12,9 @@ block content
   // Карточки преимуществ
   section(class="max-w-6xl mx-auto px-4 py-16")
     ul(class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8")
-      li(class="bg-[var(--accent)] text-[var(--bg-primary)] p-6 rounded-xl shadow-lg text-center")
-        div(class="text-4xl mb-4") ⚡
-        h3(class="text-xl font-semibold mb-2") Быстрая вёрстка
-        p(class="text-[var(--bg-primary)] opacity-90") Сайты грузятся мгновенно. Никакого лишнего кода.
-      li(class="bg-[var(--accent)] text-[var(--bg-primary)] p-6 rounded-xl shadow-lg text-center")
-        div(class="text-4xl mb-4") 📱
-        h3(class="text-xl font-semibold mb-2") Адаптивность
-        p(class="text-[var(--bg-primary)] opacity-90") Корректно работает на телефонах, планшетах и ноутбуках.
-      li(class="bg-[var(--accent)] text-[var(--bg-primary)] p-6 rounded-xl shadow-lg text-center")
-        div(class="text-4xl mb-4") 🔍
-        h3(class="text-xl font-semibold mb-2") Оптимизация под поисковики
-        p(class="text-[var(--bg-primary)] opacity-90") Чистый код и быстрая загрузка для высоких позиций в SEO.
+      +card('⚡', 'Быстрая вёрстка', 'Сайты грузятся мгновенно. Никакого лишнего кода.')
+      +card('📱', 'Адаптивность', 'Корректно работает на телефонах, планшетах и ноутбуках.')
+      +card('🔍', 'Оптимизация под поисковики', 'Чистый код и быстрая загрузка для высоких позиций в SEO.')
 
   // Блок "Обо мне" (якорь)
   section#about(class="max-w-6xl mx-auto px-4 py-16 scroll-mt-20")

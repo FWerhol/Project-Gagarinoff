@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#000000" rx="12" ry="12"/>
+  <!-- Первая строка: Мастерская -->
+  <text x="50" y="46" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#FFFFFF" text-anchor="middle">Мастерская</text>
+  <!-- Вторая строка: <сайтов> -->
+  <text x="50" y="64" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#FFFFFF" text-anchor="middle">&lt;сайтов&gt;</text>
+</svg>

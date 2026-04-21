@@ -1,18 +1,37 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 :root {
     --bg-primary: #0A0A0A;
     --bg-secondary: #1E293B;
     --text-color-primary: #F8FAFC;
     --text-secondary: #94A3B8;
-    --accent: #38BDF8;
+    --accent: #00CC66;
     --border: #334155;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/Inter-Variable.woff2') format('woff2');
+}
+
+.binary-svg-bg {
+  background-image: url('/images/binary-pattern.svg');
+  background-repeat: repeat;
 }
 
 body {
     background-color: var(--bg-primary);
     color: var(--text-color-primary);
+    font-family: 'Inter Variable', system-ui, sans-serif;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
 }
