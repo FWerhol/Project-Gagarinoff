@@ -7,14 +7,14 @@ block content
     h1(class="text-4xl font-bold mb-4") Разработка сайтов 
       span(class="text-[var(--accent)]") под ключ
     p(class="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto") Верстаю быстрые, современные сайты, которые приносят клиентов. Работаю по всей России.
-    a(href="/services" class="inline-block mt-8 bg-[var(--accent)] text-[var(--bg-primary)] px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition") Посмотреть услуги
+    a(href="#contacts" class="inline-block mt-8 bg-transparent px-8 py-3 border border-[var(--accent)] rounded-none font-semibold hover:no-underline") Заказать сайт
 
   // Карточки преимуществ
   section(class="max-w-6xl mx-auto px-4 py-16")
     ul(class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8")
-      +card('⚡', 'Быстрая вёрстка', 'Сайты грузятся мгновенно. Никакого лишнего кода.')
-      +card('📱', 'Адаптивность', 'Корректно работает на телефонах, планшетах и ноутбуках.')
-      +card('🔍', 'Оптимизация под поисковики', 'Чистый код и быстрая загрузка для высоких позиций в SEO.')
+      +card('⚡', 'Быстрая вёрстка', 'Ваш сайт будет открываться мгновенно.')
+      +card('📱', 'Адаптивность', 'Сайт идеально будет выглядеть на любом устройстве.')
+      +card('🔍', 'Оптимизация под поисковики', 'Вы получите больше клиентов из поиска Яндекс и Google.')
 
   // Блок "Обо мне" (якорь)
   section#about(class="max-w-6xl mx-auto px-4 py-16 scroll-mt-20")
@@ -25,9 +25,9 @@ block content
       // Текст
       div(class="md:w-1/2 space-y-4")
         h2(class="text-3xl font-bold text-[var(--text-primary)]") Обо мне
-        p(class="text-[var(--text-secondary)] leading-relaxed") Привет! Меня зовут Дмитрий, я веб-разработчик из России. Занимаюсь созданием сайтов на заказ с 2024 года. Моя цель — помогать бизнесу расти через современные, быстрые и удобные веб-решения.
+        p(class="text-[var(--text-secondary)] leading-relaxed") Привет! Меня зовут Дмитрий, я веб-разработчик. Моя цель — помогать бизнесу расти через современные, быстрые и удобные веб-решения.
         p(class="text-[var(--text-secondary)] leading-relaxed") Использую актуальные технологии: TailwindCSS, Pug, Gulp, Astro. Также работаю с WordPress и интеграциями 1С-Битрикс. В каждом проекте ценю чистоту кода, адаптивность и заботу о пользователе.
-        p(class="text-[var(--text-secondary)] leading-relaxed") Связаться со мной можно через Telegram или форму на странице контактов. Буду рад обсудить твой проект!
+        p(class="text-[var(--text-secondary)] leading-relaxed") Связаться со мной можно через Telegram или форму на странице контактов. Буду рад обсудить Ваш проект!
 
   // Блок "Контакты"
   section#contacts(class="max-w-6xl mx-auto px-4 py-16 scroll-mt-20")
@@ -48,10 +48,6 @@ block content
           a(href="https://t.me/@Gagarinoff" target="_blank" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition") Telegram
       // Правая колонка: форма
       div(class="md:w-1/2")
-        form(action="https://formspree.io/f/ваш_ид" method="POST" class="space-y-4")
-          input(type="text" name="name" placeholder="Ваше имя" required class="w-full p-3 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)]")
-          input(type="email" name="email" placeholder="Email" required class="w-full p-3 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)]")
-          textarea(name="message" rows="4" placeholder="Сообщение" required class="w-full p-3 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)]")
-          button(type="submit" class="bg-[var(--accent)] text-[var(--bg-primary)] px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition") Отправить
+        <script src="https://forms.yandex.ru/_static/embed.js"></script><iframe src="https://forms.yandex.ru/u/69e8360749af47606525d211?iframe=1" frameborder="0" name="ya-form-69e8360749af47606525d211" width="650"></iframe>
 
           
