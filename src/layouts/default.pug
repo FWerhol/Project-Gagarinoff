@@ -1,48 +1,47 @@
 doctype html
 html(lang="ru")
   head
-    //- Charset & Viewport
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
 
-    //- Basic SEO
-    title Сайты под ключ — разработка и вёрстка сайтов
-    meta(name="description" content="Современные сайты на заказ. Быстрая вёрстка, адаптивность, SEO-оптимизация. Работа по всей России. Недорого и качественно.")
-    meta(name="keywords" content="разработка сайтов, вёрстка сайтов, сайт под ключ, лендинг, интернет-магазин, адаптивная вёрстка, SEO")
+    //- Основные SEO-метки (под проект «Дело.Сайт»)
+    title Дело.Сайт — Автоматизация для мастеров. Сайт + сметы + договоры
+    meta(name="description" content="Сайт-конструктор для строителей и мастеров: онлайн-сметы, договоры, личный кабинет. Привлекайте клиентов и экономьте время.")
+    meta(name="keywords" content="сайт для строителя, онлайн смета, договор онлайн, личный кабинет мастера, автоматизация услуг")
     meta(name="author" content="Дмитрий Гагаринов")
     meta(name="robots" content="index, follow")
 
-    //- Styles
+    //- Подключение стилей
     link(rel="stylesheet" href="styles/style.css")
 
-    //- Open Graph / Social Media
-    meta(property="og:title" content="Сайты под ключ — разработка и вёрстка сайтов")
-    meta(property="og:description" content="Современные сайты на заказ. Быстрая вёрстка, адаптивность, SEO. Работа по всей России.")
+    //- Open Graph (для соцсетей)
+    meta(property="og:title" content="Дело.Сайт — Автоматизация для мастеров")
+    meta(property="og:description" content="Сайт с авторасчётом смет, договорами и личным кабинетом для строителей и мастеров. Повысьте продажи и экономьте часы.")
     meta(property="og:image" content="https://my-landing-new.onrender.com/images/og-preview.jpg")
     meta(property="og:image:width" content="1200")
     meta(property="og:image:height" content="630")
     meta(property="og:url" content="https://my-landing-new.onrender.com/")
     meta(property="og:type" content="website")
-    meta(property="og:site_name" content="Сайты под ключ")
+    meta(property="og:site_name" content="Дело.Сайт")
     meta(property="og:locale" content="ru_RU")
 
-    //- Twitter Card
+    //- Twitter Card (X)
     meta(name="twitter:card" content="summary_large_image")
-    meta(name="twitter:title" content="Сайты под ключ — разработка и вёрстка сайтов")
-    meta(name="twitter:description" content="Современные сайты на заказ. Быстрая вёрстка, адаптивность, SEO.")
+    meta(name="twitter:title" content="Дело.Сайт — Автоматизация для мастеров")
+    meta(name="twitter:description" content="Сайт с авторасчётом смет, договорами и личным кабинетом.")
     meta(name="twitter:image" content="https://my-landing-new.onrender.com/images/og-preview.jpg")
 
     //- Favicon
     link(rel="icon" type="image/svg+xml" href="images/favicon.svg")
     link(rel="alternate icon" href="images/favicon.ico" sizes="any")
 
-    //- Canonical URL
-    link(rel="canonical" href="https://gagarinovdev.netlify.app/")
+    //- Каноническая ссылка (замени на свой домен, когда будет готов)
+    link(rel="canonical" href="https://my-landing-new.onrender.com/")
 
-    //- счетчик яндекс метрики
+    //- Яндекс.Метрика (компонент)
     include ../components/metrika
 
-  body(class="binary-svg-bg flex flex-col min-h-screen bg-[var(--bg-primary)] text-[var(--text-color-primary)]")
+  body(class="binary-svg-bg flex flex-col min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]")
     include ../components/header/header
     main(class="flex-grow max-w-6xl w-full mx-auto px-4")
       block content

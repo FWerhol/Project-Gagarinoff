@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0A0A0A"/>
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Дело.Сайт</text>
+  <text x="600" y="360" font-family="Arial, sans-serif" font-size="32" fill="#34D399" text-anchor="middle">Автоматизация для мастеров</text>
+  <rect x="450" y="400" width="300" height="2" fill="#34D399"/>
+  <text x="600" y="460" font-family="Arial, sans-serif" font-size="20" fill="#94A3B8" text-anchor="middle">Сайт + сметы + договоры + личный кабинет</text>
+</svg>
