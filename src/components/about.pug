@@ -1,0 +1,67 @@
+//- Блок "О проекте" (доступная семантическая вёрстка)
+section#about(
+  class="max-w-6xl mx-auto px-4 py-16 scroll-mt-20",
+  itemscope,
+  itemtype="https://schema.org/Service",
+  aria-labelledby="about-heading"
+)
+  div(class="flex flex-col md:flex-row gap-12 items-center")
+    
+    // Левая колонка: схема работы
+    div(class="md:w-1/2", itemscope, itemtype="https://schema.org/HowTo")
+      meta(itemprop="name", content="Как работает система для строителя")
+      div(class="bg-[var(--bg-secondary)] p-6 rounded-xl border border-[var(--border)]")
+        h3(class="text-xl font-semibold text-center text-[var(--text-primary)] mb-6", itemprop="description") Как работает система
+        
+        ol(class="space-y-4", aria-label="Шаги работы системы")
+          // Шаг 1
+          li(class="flex items-center gap-4", itemprop="step", itemscope, itemtype="https://schema.org/HowToStep")
+            meta(itemprop="url", content="#step1")
+            div(class="w-10 h-10 rounded-full bg-[var(--accent)] flex items-center justify-center text-[var(--bg-primary)] font-bold", aria-hidden="true", itemprop="position") 1
+            div(class="flex-1", itemprop="itemListElement", itemscope, itemtype="https://schema.org/HowToDirection")
+              p(class="font-medium text-[var(--text-primary)]", itemprop="name") Клиент выбирает услуги
+              p(class="text-sm text-[var(--text-secondary)]", itemprop="description") На сайте, как в меню.
+
+          // Шаг 2
+          li(class="flex items-center gap-4", itemprop="step", itemscope, itemtype="https://schema.org/HowToStep")
+            meta(itemprop="url", content="#step2")
+            div(class="w-10 h-10 rounded-full bg-[var(--accent)] flex items-center justify-center text-[var(--bg-primary)] font-bold", aria-hidden="true", itemprop="position") 2
+            div(class="flex-1", itemprop="itemListElement", itemscope, itemtype="https://schema.org/HowToDirection")
+              p(class="font-medium text-[var(--text-primary)]", itemprop="name") Система считает смету
+              p(class="text-sm text-[var(--text-secondary)]", itemprop="description") Мгновенно, без вашего участия.
+
+          // Шаг 3
+          li(class="flex items-center gap-4", itemprop="step", itemscope, itemtype="https://schema.org/HowToStep")
+            meta(itemprop="url", content="#step3")
+            div(class="w-10 h-10 rounded-full bg-[var(--accent)] flex items-center justify-center text-[var(--bg-primary)] font-bold", aria-hidden="true", itemprop="position") 3
+            div(class="flex-1", itemprop="itemListElement", itemscope, itemtype="https://schema.org/HowToDirection")
+              p(class="font-medium text-[var(--text-primary)]", itemprop="name") Готовый договор онлайн
+              p(class="text-sm text-[var(--text-secondary)]", itemprop="description") Клиент подписывает и оплачивает.
+
+        div(class="mt-6 text-center text-sm text-[var(--text-secondary)]")
+          span(aria-hidden="true") ✨
+          span Всё автоматически, без лишних звонков
+
+    // Правая колонка: текст о проекте
+    div(class="md:w-1/2 space-y-4")
+      h2(id="about-heading", class="text-3xl font-bold text-[var(--text-primary)]", itemprop="name") Это не просто сайт. Это готовая бизнес-система для строителя.
+      meta(itemprop="serviceType", content="site_crm_calculator_contractor")
+      div(itemprop="description")
+        p(class="text-[var(--text-secondary)] leading-relaxed") Вы получаете инструмент, который делает три вещи:
+        ul(class="list-disc pl-5 space-y-2 text-[var(--text-secondary)]")
+          li #[strong(class="text-[var(--accent)]") Привлекает заказы] — клиенты видят ваши работы и сразу оставляют заявку.
+          li #[strong(class="text-[var(--accent)]") Считает стоимость онлайн] — клиент сам выбирает услуги, система выдаёт точную смету.
+          li #[strong(class="text-[var(--accent)]") Готовит договор за секунды] — подставляются все данные, остаётся только подписать.
+        p(class="text-[var(--text-secondary)] leading-relaxed") Вам не нужно разбираться в программировании. Просто добавляйте свои работы, цены и получайте заказы. Личный кабинет, генератор документов, онлайн-запись — всё включено.
+        p(class="text-[var(--accent)] font-semibold") 💎 Единая платформа. Никаких скрытых платежей.
+
+      // Кнопка призыва
+      div(class="mt-8")
+        a(
+          href="#contacts",
+          class="inline-block bg-[var(--accent)] text-[var(--bg-primary)] px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition duration-200 text-center focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)]",
+          role="button",
+          itemprop="potentialAction",
+          itemscope,
+          itemtype="https://schema.org/Action"
+        ) Хочу такую систему

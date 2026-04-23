@@ -1,9 +1,13 @@
 include ../card/card.mixin.pug
 
 header(class="bg-transparent flex justify-between w-3/4 mx-auto px-4 py-4 items-center flex-wrap gap-4")
-  a(class="text-3xl font-bold text-[var(--accent)]" href="/") Frontend мастерская
-  nav 
+  a(
+    class="text-3xl font-bold text-[var(--accent)] no-underline hover:opacity-90 transition focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2",
+    href="/",
+    aria-label="Дело.Сайт — главная"
+  ) Дело.Сайт
+
+  nav(aria-label="Основная навигация")
     ul(class="flex flex-col gap-2 sm:flex-row sm:gap-4")
-      +cardTitle('Обо мне', '#about')
-      +cardTitle('Галерея работ', '#')
+      +cardTitle('Как это работает', '#about')
       +cardTitle('Контакты', '#contacts')
