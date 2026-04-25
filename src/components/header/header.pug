@@ -11,3 +11,9 @@ header(class="bg-transparent flex justify-between w-3/4 mx-auto px-4 py-4 items-
     ul(class="flex flex-col gap-2 sm:flex-row sm:gap-4")
       +cardTitle('Как это работает', '#about')
       +cardTitle('Контакты', '#contacts')
+      li
+        a(
+          id="open-login-modal"
+          href="#"
+          class="text-[var(--accent)] hover:no-underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)]"
+        ) Вход в личный кабинет

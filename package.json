@@ -12,7 +12,7 @@
     "checkAll": "npm run check && npm run lint",
     "fixAll": "npm run format && npm run lintfix",
     "build": "gulp build",
-    "dev": "gulp",
+    "dev": "concurrently \"gulp watch\" \"npx live-server dist\"",
     "fixAndBuild": "npm run fixAll && npm run build",
     "lintfixAndPush": "npm run fixAll && git add . && git commit -m 'подготовили к публикации' && git push"
   },
@@ -21,6 +21,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.27",
     "browser-sync": "^3.0.4",
+    "concurrently": "^9.2.1",
     "cssnano": "^7.1.4",
     "del": "^6.0.0",
     "gulp": "^5.0.1",
@@ -28,6 +29,7 @@
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^10.0.0",
     "gulp-pug": "^5.0.0",
+    "gulp-ttf2woff2": "^5.0.0",
     "html-minifier": "^4.0.0",
     "postcss": "^8.5.8",
     "postcss-combine-media-query": "^2.1.0",
@@ -39,5 +41,9 @@
   },
   "browserslist": [
     "last 5 versions"
-  ]
+  ],
+  "dependencies": {
+    "jspdf-fontkit": "^0.0.7",
+    "rubles": "^2.0.0"
+  }
 }

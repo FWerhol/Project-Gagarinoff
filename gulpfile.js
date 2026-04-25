@@ -1,77 +1,54 @@
 const gulp = require('gulp');
-const plumber = require('gulp-plumber');
 const del = require('del');
-const browserSync = require('browser-sync').create();
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
-const mediaquery = require('postcss-combine-media-query');
 const cssnano = require('cssnano');
 const tailwindcss = require('tailwindcss');
 const gulpPug = require('gulp-pug');
 
-function serve() {
-  browserSync.init({
-    server: {
-      baseDir: './dist'
-    }
-  });
-}
-
 function tailwindCss() {
-  const plugins = [
-    tailwindcss(),
-    autoprefixer(),
-    mediaquery(),
-    cssnano()
-  ];
-
   return gulp.src('src/styles/style.css')
-    .pipe(plumber())
-    .pipe(postcss(plugins))
-    .pipe(gulp.dest('dist/styles/'))
-    .pipe(browserSync.reload({stream: true}));
+    .pipe(postcss([tailwindcss(), autoprefixer(), cssnano()]))
+    .pipe(gulp.dest('dist/styles'));
 }
 
 function fonts() {
   return gulp.src('src/fonts/**/*', { encoding: false })
-    .pipe(gulp.dest('dist/fonts'))
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(gulp.dest('dist/fonts'));
 }
 
 function images() {
-  // Копируем ВСЕ файлы из папки images
   return gulp.src('src/images/**/*', { encoding: false })
-    .pipe(gulp.dest('dist/images'))
-    .pipe(browserSync.reload({stream: true}));
+    .pipe(gulp.dest('dist/images'));
 }
 
 function clean() {
   return del('dist');
 }
 
+function js() {
+  return gulp.src('src/js/**/*.js')
+    .pipe(gulp.dest('dist/js'));
+}
+
 function pug() {
   return gulp.src('src/pages/**/*.pug')
-        .pipe(gulpPug())
-        .pipe(gulp.dest('dist/'))
-        .pipe(browserSync.reload({stream: true}));
+    .pipe(gulpPug())
+    .pipe(gulp.dest('dist/'));
 }
 
 function watchFiles() {
   gulp.watch(['src/**/*.pug'], pug);
-  gulp.watch(['src/styles/**/*.css'], tailwindCss); 
-  gulp.watch(['src/images/**/*.{jpg,png,svg,gif,ico,webp,avif}'], images);
+  gulp.watch(['src/styles/**/*.css'], tailwindCss);
+  gulp.watch(['src/images/**/*'], images);
   gulp.watch(['src/fonts/**/*'], fonts);
   gulp.watch(['tailwind.config.js'], tailwindCss);
+  gulp.watch(['src/js/**/*.js'], js);
 }
 
-const build = gulp.series(clean, gulp.parallel(pug, tailwindCss, images, fonts));
-const watchapp = gulp.parallel(build, watchFiles, serve);  
-
-exports.clean = clean;
-exports.tailwindCss = tailwindCss;
-exports.images = images;
-exports.pug = pug;
+const build = gulp.series(clean, gulp.parallel(pug, tailwindCss, images, fonts, js));
+const watch = gulp.parallel(build, watchFiles);
 
 exports.build = build;
-exports.watchapp = watchapp;
-exports.default = watchapp;
+exports.watch = watch;
+exports.default = watch;

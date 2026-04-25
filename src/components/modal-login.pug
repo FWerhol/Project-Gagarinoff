@@ -1,0 +1,40 @@
+//- Модальное окно авторизации (по умолчанию скрыто)
+div(
+  id="login-modal",
+  class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden",
+  aria-hidden="true",
+  role="dialog",
+  aria-modal="true"
+)
+  div(
+    class="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-6 w-full max-w-md mx-4 shadow-xl"
+  )
+    div(class="flex justify-between items-center mb-4")
+      h3(class="text-xl font-semibold text-[var(--text-primary)]") Вход в личный кабинет
+      button(
+        id="close-modal-btn",
+        class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition text-2xl leading-none",
+        aria-label="Закрыть"
+      ) &times;
+
+    form(id="modal-login-form")
+      div(class="mb-4")
+        label(class="block text-sm font-medium mb-1 text-[var(--text-secondary)]") Логин
+        input(
+          type="text",
+          id="modal-login",
+          class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)]"
+        )
+      div(class="mb-6")
+        label(class="block text-sm font-medium mb-1 text-[var(--text-secondary)]") Пароль
+        input(
+          type="password",
+          id="modal-password",
+          class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)]"
+        )
+      button(
+        type="submit",
+        class="w-full bg-[var(--accent)] text-[var(--bg-primary)] py-2 rounded font-semibold hover:opacity-90 transition"
+      ) Войти
+
+    div(id="modal-error-msg", class="text-red-500 text-sm mt-4 text-center hidden") Неверный логин или пароль
