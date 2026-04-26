@@ -261,7 +261,7 @@
   });
   
   // Используем шрифт ArialUnicode (уже зарегистрирован через подключённый ArialUnicode.js)
-  doc.setFont("DejaVuSans");
+  doc.setFont("DejaVuSans", "normal");
   
   const pageWidth = 210;
   const leftMargin = 20;
@@ -270,7 +270,7 @@
   
   function addWrappedText(text, fontSize, x, y, maxWidth = maxTextWidth) {
     doc.setFontSize(fontSize);
-    doc.setFont('DejaVuSans');
+    doc.setFont("DejaVuSans", "normal");
     const lines = doc.splitTextToSize(text, maxWidth);
     doc.text(lines, x, y);
     return y + (lines.length * (fontSize * 0.4));
@@ -294,7 +294,7 @@
   y += 5;
   
   // Город и дата
-  y = addParagraph(`г. ${contractData.city} «${formatDate(contractData.contractDate)}» 2026 г.`, y);
+  y = addParagraph(`г. ${contractData.city} «${formatContractDate(contractData.contractDate)}»`, y);
   y += 5;
   
   // Стороны
@@ -385,7 +385,7 @@
   }
   
   doc.setFontSize(11);
-  doc.setFont("DejaVuSans");
+  doc.setFont("DejaVuSans", "normal");
   doc.text('9. АДРЕСА, РЕКВИЗИТЫ И ПОДПИСИ СТОРОН', leftMargin, y);
   y += 8;
   

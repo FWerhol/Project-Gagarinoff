@@ -4,4 +4,13 @@ var callAddFont = function () {
 this.addFileToVFS('DejaVuSans-normal.ttf', font);
 this.addFont('DejaVuSans-normal.ttf', 'DejaVuSans', 'normal');
 };
-jsPDF.API.events.push(['addFonts', callAddFont])
+var jsPDFConstructor =
+  (typeof window !== 'undefined' && window.jspdf && window.jspdf.jsPDF) ||
+  (typeof window !== 'undefined' && window.jsPDF) ||
+  (typeof globalThis !== 'undefined' && globalThis.jspdf && globalThis.jspdf.jsPDF) ||
+  (typeof globalThis !== 'undefined' && globalThis.jsPDF);
+
+if (jsPDFConstructor && jsPDFConstructor.API && jsPDFConstructor.API.events) {
+  jsPDFConstructor.API.events.push(['addFonts', callAddFont]);
+}
+
