@@ -19,63 +19,81 @@
   }
 
   function renderEstimateTable(estimateItems) {
+    if (!tbody) return;
+
     if (!estimateItems || estimateItems.length === 0) {
-      if (tbody) tbody.innerHTML = '<tr><td colspan="6" class="text-center text-[var(--text-secondary)] py-8">Смета пуста. Добавьте работы слева.</td></tr>';
-      if (totalSpan) totalSpan.innerHTML = '<span>Итого: 0 ₽</span>';
+      tbody.innerHTML = '<tr><td colspan="7" class="text-center text-[var(--text-secondary)] py-8">Смета пуста. Добавьте работы или группы.</td></tr>';
+      updateTotalDisplay(0);
       return;
     }
-    
+
     tbody.innerHTML = '';
     let grandTotal = 0;
-    
+    let groupCounter = 0;
+    let workCounter = 0;
+
     estimateItems.forEach((item, index) => {
-      grandTotal += item.total;
-      const row = document.createElement('tr');
-      row.className = 'border-b border-[var(--border)]';
-      row.innerHTML = `
-        <td class="py-2 pr-2 text-[var(--text-primary)]">${escapeHtml(item.name)}</td>
-        <td class="py-2 pr-2 text-[var(--text-primary)] quantity-cell" data-index="${index}">
-          <input type="number" step="0.1" value="${item.quantity}" class="edit-quantity w-20 p-1 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]" data-index="${index}">
-        </td>
-        <td class="py-2 pr-2 text-[var(--text-primary)]">${item.unit}</td>
-        <td class="py-2 pr-2 text-[var(--text-primary)] price-cell" data-index="${index}">
-          <input type="number" step="0.1" value="${item.price}" class="edit-price w-24 p-1 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]" data-index="${index}">
-        </td>
-        <td class="py-2 text-[var(--accent)] font-semibold item-total-${index}">${item.total.toLocaleString()} ₽</td>
-        <td class="py-2 text-center">
-          <button class="remove-item-btn text-red-500 hover:text-red-700 transition" data-index="${index}" aria-label="Удалить позицию">✖</button>
-        </td>
-      `;
-      tbody.appendChild(row);
+      if (item.type === 'group') {
+        groupCounter++;
+        workCounter = 0;
+
+        const row = document.createElement('tr');
+        row.className = 'bg-[var(--bg-primary)]/30';
+        row.innerHTML = `
+          <td colspan="7" class="py-2 font-bold text-[var(--text-primary)] text-left">
+            <span class="mr-2">📁</span> ${escapeHtml(item.name)}
+            <button class="remove-group-btn float-right text-red-500 hover:text-red-700 text-sm" data-index="${index}">✖ Удалить группу</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+        return;
+      }
+
+      if (item.type === 'work') {
+        workCounter++;
+        grandTotal += item.total;
+        const workNumber = groupCounter > 0 ? `${groupCounter}.${workCounter}` : `${workCounter}`;
+
+        const row = document.createElement('tr');
+        row.className = 'border-b border-[var(--border)]';
+        row.innerHTML = `
+          <td class="py-2 pr-2 text-[var(--text-primary)] text-center w-12">${workNumber}</td>
+          <td class="py-2 pr-2 text-[var(--text-primary)]">${escapeHtml(item.name)}</td>
+          <td class="py-2 pr-2 text-[var(--text-primary)]">${item.quantity}</td>
+          <td class="py-2 pr-2 text-[var(--text-primary)]">${item.unit}</td>
+          <td class="py-2 pr-2 text-[var(--text-primary)]">
+            <input type="number" step="0.1" value="${item.price}" class="edit-price w-24 p-1 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]" data-index="${index}">
+          </td>
+          <td class="py-2 text-[var(--accent)] font-semibold text-right w-24">${item.total.toLocaleString()} ₽</td>
+          <td class="py-2 text-center w-8">
+            <button class="remove-item-btn text-red-500 hover:text-red-700 transition" data-index="${index}">✖</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      }
     });
-    
-    if (totalSpan) totalSpan.innerHTML = `<span>Итого: ${grandTotal.toLocaleString()} ₽</span>`;
-    
-    // Обработчики удаления
+
+    updateTotalDisplay(grandTotal);
+
     document.querySelectorAll('.remove-item-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const index = parseInt(btn.dataset.index);
+      btn.addEventListener('click', () => {
+        const index = parseInt(btn.dataset.index, 10);
         if (onPriceChangeCallback) onPriceChangeCallback('remove', index);
       });
     });
-    
-    // Обработчики изменения количества
-    document.querySelectorAll('.edit-quantity').forEach(input => {
-      input.addEventListener('change', (e) => {
-        const index = parseInt(input.dataset.index);
-        const newQuantity = parseFloat(input.value);
-        if (!isNaN(newQuantity) && newQuantity > 0) {
-          if (onPriceChangeCallback) onPriceChangeCallback('quantity', index, newQuantity);
-        } else {
-          input.value = estimateItems[index]?.quantity || 1;
+
+    document.querySelectorAll('.remove-group-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const index = parseInt(btn.dataset.index, 10);
+        if (confirm('Удалить группу со всеми работами внутри?')) {
+          if (onPriceChangeCallback) onPriceChangeCallback('removeGroup', index);
         }
       });
     });
-    
-    // Обработчики изменения цены
+
     document.querySelectorAll('.edit-price').forEach(input => {
-      input.addEventListener('change', (e) => {
-        const index = parseInt(input.dataset.index);
+      input.addEventListener('change', () => {
+        const index = parseInt(input.dataset.index, 10);
         const newPrice = parseFloat(input.value);
         if (!isNaN(newPrice) && newPrice > 0) {
           if (onPriceChangeCallback) onPriceChangeCallback('price', index, newPrice);

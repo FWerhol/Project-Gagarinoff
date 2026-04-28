@@ -4,30 +4,34 @@
   const STORAGE_KEY_ALL = 'all_estimates';
 
   function saveCurrentEstimate(estimateItems) {
-    if (!estimateItems || estimateItems.length === 0) return;
+    if (!estimateItems || estimateItems.length === 0) return null;
+
     const estimateData = {
       id: 'estimate_' + Date.now(),
       date: new Date().toISOString(),
       items: estimateItems,
-      total: estimateItems.reduce((sum, item) => sum + item.total, 0)
+      total: estimateItems.reduce((sum, item) => sum + (item.total || 0), 0)
     };
+
     localStorage.setItem(STORAGE_KEY_CURRENT, JSON.stringify(estimateData));
-    
+
     let allEstimates = JSON.parse(localStorage.getItem(STORAGE_KEY_ALL) || '[]');
     allEstimates.unshift(estimateData);
     if (allEstimates.length > 50) allEstimates = allEstimates.slice(0, 50);
     localStorage.setItem(STORAGE_KEY_ALL, JSON.stringify(allEstimates));
-    
+
     return estimateData;
   }
 
   function loadCurrentEstimate() {
     const saved = localStorage.getItem(STORAGE_KEY_CURRENT);
-    if (saved) {
-      try {
-        const data = JSON.parse(saved);
-        if (data.items && data.items.length) return data.items;
-      } catch(e) {}
+    if (!saved) return [];
+
+    try {
+      const data = JSON.parse(saved);
+      if (data.items && data.items.length) return data.items;
+    } catch (e) {
+      return [];
     }
     return [];
   }
@@ -37,10 +41,13 @@
   }
 
   function getAllEstimates() {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY_ALL) || '[]');
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY_ALL) || '[]');
+    } catch (e) {
+      return [];
+    }
   }
 
-  // Экспортируем функции глобально
   window.EstimateStorage = {
     saveCurrentEstimate,
     loadCurrentEstimate,
