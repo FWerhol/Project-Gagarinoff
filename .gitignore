@@ -4,4 +4,5 @@ node_modules/
 .vscode/
 *.log
 .DS_Store
-
+echo "giga_test.js"
+echo ".env"

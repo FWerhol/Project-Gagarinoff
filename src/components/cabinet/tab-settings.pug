@@ -1,0 +1,84 @@
+section(
+  id="settings-tab",
+  class="tab-content hidden",
+  role="tabpanel",
+  aria-labelledby="tab-settings"
+)
+  h2(class="text-2xl font-semibold mb-6 text-[var(--text-primary)]") Настройки профиля
+  
+  form(
+    id="master-settings-form",
+    class="bg-[var(--bg-secondary)] p-6 rounded-xl border border-[var(--border)]",
+    novalidate
+  )
+    div(class="space-y-4 max-w-2xl")
+      div(class="grid grid-cols-1 md:grid-cols-2 gap-4")
+        div
+          label(for="master-city", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Город
+          input(
+            type="text",
+            id="master-city",
+            placeholder="Новосибирск",
+            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          )
+        div
+          label(for="master-tax-status", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Налоговый статус
+          select(
+            id="master-tax-status",
+            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          )
+            option(value="self_employed") Самозанятый
+            option(value="individual_entrepreneur") Индивидуальный предприниматель (ИП)
+            option(value="unregistered") Не оформлен
+      
+      div
+        label(for="master-fullname", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") ФИО мастера
+        input(
+          type="text",
+          id="master-fullname",
+          placeholder="Иванов Иван Иванович",
+          class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+        )
+      
+      div(class="grid grid-cols-2 gap-4")
+        div
+          label(for="master-passport-series", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Серия паспорта
+          input(
+            type="text",
+            id="master-passport-series",
+            placeholder="0000",
+            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          )
+        div
+          label(for="master-passport-number", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Номер паспорта
+          input(
+            type="text",
+            id="master-passport-number",
+            placeholder="000000",
+            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          )
+      
+      div
+        label(for="master-passport-issued-by", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Кем выдан паспорт
+        input(
+          type="text",
+          id="master-passport-issued-by",
+          placeholder="ОВД Ленинского района г. Новосибирска",
+          class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+        )
+      
+      div
+        label(for="master-phone", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Телефон
+        input(
+          type="tel",
+          id="master-phone",
+          placeholder="+7 (999) 123-45-67",
+          class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+        )
+      
+      button(
+        type="submit",
+        class="bg-[var(--accent)] text-[var(--bg-primary)] px-4 py-2 rounded font-semibold hover:opacity-90 transition focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+      ) Сохранить профиль
+    
+    div(id="profile-message", class="mt-4 text-sm hidden", role="status")

@@ -268,12 +268,22 @@
   const maxTextWidth = pageWidth - leftMargin - leftMargin;
   let y = 25;
   
-  function addWrappedText(text, fontSize, x, y, maxWidth = maxTextWidth) {
+    function addWrappedText(text, fontSize, x, y, maxWidth = maxTextWidth) {
     doc.setFontSize(fontSize);
     doc.setFont("DejaVuSans", "normal");
     const lines = doc.splitTextToSize(text, maxWidth);
+    
+    // Проверяем, поместится ли текст на текущей странице
+    const lineHeight = fontSize * 0.4;
+    const totalHeight = lines.length * lineHeight;
+    
+    if (y + totalHeight > 280) {  // 280 мм - нижняя граница страницы A4
+      doc.addPage();
+      y = 20; // Отступ сверху на новой странице
+    }
+    
     doc.text(lines, x, y);
-    return y + (lines.length * (fontSize * 0.4));
+    return y + totalHeight;
   }
   
   function addTitle(text, y) {

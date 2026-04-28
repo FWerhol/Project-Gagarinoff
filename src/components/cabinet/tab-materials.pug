@@ -1,0 +1,20 @@
+section(id="materials-tab", class="tab-content hidden")
+  h2(class="text-2xl font-semibold mb-4 text-[var(--text-primary)]") Смета материалов
+  p(class="text-[var(--text-secondary)] mb-4") Здесь будет автоматический расчёт материалов по выбранной смете работ.
+  div(class="bg-[var(--bg-secondary)] p-6 rounded-xl border border-[var(--border)] text-center")
+    p(class="text-[var(--text-secondary)] mb-4") Выберите смету для расчёта материалов.
+    select(id="materials-estimate-select", class="p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] mb-4 w-full max-w-md")
+      option(value="") -- Выберите смету --
+    button(id="materials-calc-btn", class="bg-[var(--accent)] text-[var(--bg-primary)] px-4 py-2 rounded font-semibold hover:opacity-90 transition") 🔢 Рассчитать материалы
+  div(id="materials-result", class="mt-6 hidden")
+    h3(class="text-lg font-semibold mb-2 text-[var(--text-primary)]") Расчёт материалов
+    div(class="overflow-x-auto")
+      table(class="w-full text-sm border-collapse")
+        thead
+          tr(class="border-b border-[var(--border)]")
+            th(class="text-left py-2 text-[var(--text-primary)]") Материал
+            th(class="text-left py-2 text-[var(--text-primary)]") Кол-во
+            th(class="text-left py-2 text-[var(--text-primary)]") Ед.
+            th(class="text-left py-2 text-[var(--text-primary)]") Цена
+            th(class="text-left py-2 text-[var(--text-primary)]") Сумма
+        tbody(id="materials-table-body")

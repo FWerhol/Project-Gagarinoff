@@ -1,0 +1,44 @@
+section(
+  id="contract-tab",
+  class="tab-content hidden",
+  role="tabpanel",
+  aria-labelledby="tab-contract"
+)
+  h2(class="text-2xl font-semibold mb-6 text-[var(--text-primary)]") Договор
+  
+  form(
+    id="contract-form",
+    class="bg-[var(--bg-secondary)] p-6 rounded-xl border border-[var(--border)]",
+    novalidate
+  )
+    div(class="space-y-4 max-w-2xl")
+      div
+        label(for="contract-customer-fullname", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") ФИО Заказчика *
+        input(
+          type="text",
+          id="contract-customer-fullname",
+          placeholder="Иванов Иван Иванович",
+          required,
+          class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+        )
+      
+      div(class="grid grid-cols-2 gap-4")
+        input(
+          type="text",
+          id="contract-customer-passport-series",
+          placeholder="Серия паспорта",
+          required,
+          class="p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]"
+        )
+        input(
+          type="text",
+          id="contract-customer-passport-number",
+          placeholder="Номер паспорта",
+          required,
+          class="p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]"
+        )
+      
+      button(
+        type="submit",
+        class="bg-[var(--accent)] text-[var(--bg-primary)] px-4 py-2 rounded font-semibold hover:opacity-90 transition"
+      ) Сгенерировать договор

@@ -1,0 +1,105 @@
+section(id="estimate-tab", class="tab-content active")
+  h2(class="text-2xl font-semibold mb-6 text-[var(--text-primary)]") Смета работ
+
+  div(class="mb-4")
+    button(id="estimate-add-group-btn", class="bg-[var(--accent)] text-[var(--bg-primary)] px-4 py-2 rounded font-semibold hover:opacity-90 transition") 📁 Добавить группу работ
+
+  div(class="flex flex-col lg:flex-row gap-6")
+    // Левая колонка
+    div(class="lg:w-1/2 bg-[var(--bg-secondary)] p-4 rounded-xl border border-[var(--border)]")
+      h3(class="text-lg font-semibold mb-3 text-[var(--text-primary)]") Добавить работы
+
+      div(class="mb-4")
+        div(class="flex gap-2 items-center")
+          select(id="estimate-category-select", class="flex-1 p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]")
+            option(value="") -- Выберите раздел --
+          button(id="estimate-delete-category-btn", class="bg-red-500/20 text-red-500 border border-red-500 px-3 py-2 rounded font-semibold hover:bg-red-500 hover:text-white transition", title="Удалить свой раздел") 🗑
+
+      div(class="mb-4")
+        label(for="estimate-work-select", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Вид работ
+        select(id="estimate-work-select", class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]", disabled)
+          option(value="") -- Сначала выберите раздел --
+
+      div(class="grid grid-cols-2 gap-4 mb-4")
+        div
+          label(for="estimate-unit-select", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Единица изм.
+          select(id="estimate-unit-select", class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]", disabled)
+            option(value="м²") м²
+            option(value="м.п.") м.п.
+            option(value="шт") шт
+            option(value="м³") м³
+            option(value="компл") компл
+        div
+          label(for="estimate-price-input", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Цена (₽)
+          input(type="number", id="estimate-price-input", step="0.1", class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]", disabled)
+
+      div(class="grid grid-cols-2 gap-4 items-end")
+        div
+          label(for="estimate-quantity", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Количество
+          input(type="number", id="estimate-quantity", value="1", step="0.1", inputmode="decimal", class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]")
+        div
+          label(for="estimate-target-group-select", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Добавить в группу
+          select(id="estimate-target-group-select", class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]")
+            option(value="none") -- Без группы (в конец) --
+
+      button(id="estimate-add-btn", class="w-full mt-3 bg-[var(--accent)] text-[var(--bg-primary)] px-4 py-2 rounded font-semibold hover:opacity-90 transition") ➕ Добавить работу
+
+      div(class="mt-2 text-right text-sm text-[var(--text-secondary)]")
+        span Предварительная сумма: 
+        span(id="estimate-preview-total", class="font-semibold text-[var(--accent)]") 0 ₽
+
+      // Добавление своего раздела
+      div(class="mt-4 pt-4 border-t border-[var(--border)]")
+        h4(class="text-sm font-semibold text-[var(--text-primary)] mb-3") ➕ Добавить свой раздел
+        div(class="flex gap-2")
+          input(type="text", id="estimate-new-category-name", placeholder="Название раздела", class="flex-1 p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]")
+          button(id="estimate-add-category-btn", class="bg-[var(--accent)] text-[var(--bg-primary)] px-3 py-2 rounded font-semibold hover:opacity-90 transition") Добавить
+
+      // Добавление своей работы
+      div(class="mt-4 pt-4 border-t border-[var(--border)]")
+        h4(class="text-sm font-semibold text-[var(--text-primary)] mb-3") ➕ Добавить свои виды работ
+        div(class="space-y-3")
+          input(type="text", id="estimate-new-work-name", placeholder="Название работы", class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]")
+          
+          div
+            label(for="estimate-new-work-category", class="block text-sm font-medium text-[var(--text-secondary)] mb-1") Раздел работ
+            select(id="estimate-new-work-category", class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]")
+              option(value="") -- Выберите раздел --
+          
+          div(class="grid grid-cols-2 gap-3")
+            select(id="estimate-new-work-unit", class="p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]")
+              option(value="м²") м²
+              option(value="м.п.") м.п.
+              option(value="шт") шт
+              option(value="м³") м³
+              option(value="компл") компл
+            input(type="number", id="estimate-new-work-price", placeholder="Цена (₽)", step="0.1", class="p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)]")
+          button(id="estimate-add-work-btn", class="w-full bg-[var(--accent)] text-[var(--bg-primary)] py-2 rounded font-semibold hover:opacity-90 transition") 💾 Добавить в мои работы
+
+      p(class="text-xs text-[var(--text-secondary)] mt-4") * Работы добавляются в таблицу ниже.
+
+    // Правая колонка: таблица
+    div(class="lg:w-1/2")
+      div(class="overflow-x-auto")
+        table(class="w-full text-sm border-collapse")
+          caption(class="sr-only") Список добавленных работ в смету
+          thead
+            tr(class="border-b border-[var(--border)]")
+              th(scope="col", class="text-left py-2 pr-2 text-[var(--text-primary)] w-8") №
+              th(scope="col", class="text-left py-2 pr-2 text-[var(--text-primary)]") Наименование
+              th(scope="col", class="text-left py-2 pr-2 text-[var(--text-primary)] w-16") Кол-во
+              th(scope="col", class="text-left py-2 pr-2 text-[var(--text-primary)] w-16") Ед.
+              th(scope="col", class="text-left py-2 pr-2 text-[var(--text-primary)] w-24") Цена
+              th(scope="col", class="text-left py-2 text-[var(--text-primary)] w-24") Сумма
+              th(scope="col", class="w-8")
+          tbody(id="estimate-items-body")
+            tr
+              td(colspan="7", class="text-center text-[var(--text-secondary)] py-8") Смета пуста. Добавьте работы или группы.
+      
+      div(id="estimate-total", class="mt-4 text-right text-lg font-bold text-[var(--accent)]")
+        span Итого: 0 ₽
+      
+      div(class="flex gap-4 mt-6 justify-end")
+        button(id="estimate-save-btn", class="bg-[var(--accent)] text-[var(--bg-primary)] px-4 py-2 rounded font-semibold hover:opacity-90 transition") 💾 Сохранить
+        button(id="estimate-clear-btn", class="bg-red-500/20 text-red-500 border border-red-500 px-4 py-2 rounded font-semibold hover:bg-red-500 hover:text-white transition") 🗑 Очистить
+        button(id="estimate-pdf-btn", class="bg-blue-600 text-white px-4 py-2 rounded font-semibold hover:opacity-90 transition") 📄 PDF

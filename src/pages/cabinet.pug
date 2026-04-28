@@ -2,253 +2,38 @@ extends ../layouts/default.pug
 
 block content
   div(class="max-w-7xl mx-auto px-4 py-8")
-    header(class="flex justify-between items-center mb-8")
-      h1(class="text-3xl font-bold text-[var(--text-primary)]") Личный кабинет
-      button(
-        id="logout-btn",
-        class="bg-red-500 text-white px-4 py-2 rounded hover:opacity-90 transition focus:outline-none focus:ring-2 focus:ring-red-700"
-      ) Выйти
+    include ../components/cabinet/header
+    include ../components/cabinet/tabs
 
-    // Навигация (табы)
-    div(class="border-b border-[var(--border)] mb-8")
-      nav(aria-label="Разделы личного кабинета", class="flex flex-wrap gap-2")
-        button(
-          class="tab-btn active px-4 py-2 text-[var(--text-primary)] hover:text-[var(--accent)] transition border-b-2 border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--accent)]",
-          data-tab="estimate"
-        ) Смета работ
-        button(
-          class="tab-btn px-4 py-2 text-[var(--text-primary)] hover:text-[var(--accent)] transition border-b-2 border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--accent)]",
-          data-tab="contract"
-        ) Договор
-        button(
-          class="tab-btn px-4 py-2 text-[var(--text-primary)] hover:text-[var(--accent)] transition border-b-2 border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--accent)]",
-          data-tab="acts"
-        ) Акты
-        button(
-          class="tab-btn px-4 py-2 text-[var(--text-primary)] hover:text-[var(--accent)] transition border-b-2 border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--accent)]",
-          data-tab="materials"
-        ) Смета по материалам
-        button(
-          class="tab-btn px-4 py-2 text-[var(--text-primary)] hover:text-[var(--accent)] transition border-b-2 border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--accent)]",
-          data-tab="scheme"
-        ) Схема помещения
-        button(
-          class="tab-btn px-4 py-2 text-[var(--text-primary)] hover:text-[var(--accent)] transition border-b-2 border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--accent)]",
-          data-tab="settings"
-        ) Настройки
+    include ../components/cabinet/tab-estimate
+    include ../components/cabinet/tab-contract
+    include ../components/cabinet/tab-acts
+    include ../components/cabinet/tab-materials
+    include ../components/cabinet/tab-scheme
+    include ../components/cabinet/tab-settings
 
-    // Контент табов
-    section(id="estimate-tab", class="tab-content active")
-      h2(class="text-2xl font-semibold mb-4 text-[var(--text-primary)]") Смета работ
-      p(class="text-[var(--text-secondary)]") Здесь будет форма для создания сметы работ.
-
-    section(id="contract-tab", class="tab-content hidden")
-      h2(class="text-2xl font-semibold mb-6 text-[var(--text-primary)]") Договор
-      form(id="contract-form", class="bg-[var(--bg-secondary)] p-6 rounded-xl border border-[var(--border)]")
-        div(class="space-y-4")
-          // ФИО Заказчика
-          div
-            input(
-              type="date",
-              id="contract-date",
-              required,
-              class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-            )
-            p(class="text-xs text-[var(--text-secondary)] mt-1") Дата составления договора
-            label(class="block text-sm font-medium text-[var(--text-secondary)] mb-1") ФИО Заказчика *
-            input(
-              type="text",
-              id="contract-customer-fullname",
-              placeholder="Иванов Иван Иванович",
-              pattern="[A-Za-zА-Яа-яЁё\\s\\-]+",
-              title="Только буквы, пробелы и дефисы",
-              required,
-              class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-            )
-            p(class="error-message text-red-500 text-xs mt-1 hidden") Укажите корректное ФИО
-
-          // Паспортные данные
-          div(class="grid grid-cols-1 md:grid-cols-2 gap-4")
-            div
-              input(
-                type="text",
-                id="contract-customer-passport-series",
-                placeholder="Серия паспорта (4 цифры)",
-                pattern="\\d{4}",
-                title="4 цифры",
-                required,
-                class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-              )
-              p(class="error-message text-red-500 text-xs mt-1 hidden") Введите 4 цифры
-            div
-              input(
-                type="text",
-                id="contract-customer-passport-number",
-                placeholder="Номер паспорта (6 цифр)",
-                pattern="\\d{6}",
-                title="6 цифр",
-                required,
-                class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-              )
-              p(class="error-message text-red-500 text-xs mt-1 hidden") Введите 6 цифр
-
-          input(
-            type="text",
-            id="contract-customer-passport-issued-by",
-            placeholder="Кем выдан паспорт (например: ОВД Ленинского района)",
-            required,
-            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-          )
-          p(class="error-message text-red-500 text-xs mt-1 hidden") Заполните это поле
-
-          input(
-            type="text",
-            id="contract-customer-address",
-            placeholder="Адрес регистрации (город, улица, дом, кв.)",
-            required,
-            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-          )
-          p(class="error-message text-red-500 text-xs mt-1 hidden") Заполните адрес
-
-          input(
-            type="tel",
-            id="contract-customer-phone",
-            placeholder="+7 (999) 123-45-67",
-            pattern="\\+?[0-9\\s\\-\\(\\)]+",
-            title="Введите номер телефона",
-            required,
-            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-          )
-          p(class="error-message text-red-500 text-xs mt-1 hidden") Укажите номер телефона
-
-          input(
-            type="text",
-            id="contract-work-address",
-            placeholder="Адрес проведения работ",
-            required,
-            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-          )
-          p(class="error-message text-red-500 text-xs mt-1 hidden") Укажите адрес
-
-          // Даты
-          div(class="grid grid-cols-2 gap-4")
-            div
-              input(
-                type="date",
-                id="contract-start-date",
-                required,
-                class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-              )
-              p(class="text-xs text-[var(--text-secondary)] mt-1") Дата начала работ
-            div
-              input(
-                type="date",
-                id="contract-end-date",
-                required,
-                class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-              )
-              p(class="text-xs text-[var(--text-secondary)] mt-1") Дата окончания работ
-
-          input(
-            type="number",
-            id="contract-price",
-            placeholder="Стоимость работ (руб)",
-            step="0.01",
-            min="0",
-            required,
-            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-          )
-          p(class="error-message text-red-500 text-xs mt-1 hidden") Введите положительную сумму
-
-          div(class="flex items-center gap-2")
-            input(
-              type="checkbox",
-              id="contract-materials-included",
-              class="w-4 h-4 accent-[var(--accent)]"
-            )
-            label(for="contract-materials-included", class="text-[var(--text-secondary)]") Включить материалы в смету (продвинутый тариф)
-
-          button(
-            type="submit",
-            class="bg-[var(--accent)] text-[var(--bg-primary)] px-4 py-2 rounded hover:opacity-90 transition focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
-          ) Сгенерировать договор
-
-    section(id="acts-tab", class="tab-content hidden")
-      h2(class="text-2xl font-semibold mb-4 text-[var(--text-primary)]") Акты выполненных работ
-      p(class="text-[var(--text-secondary)]") Функция в разработке.
-
-    section(id="materials-tab", class="tab-content hidden")
-      h2(class="text-2xl font-semibold mb-4 text-[var(--text-primary)]") Смета по материалам
-      p(class="text-[var(--text-secondary)]") Функция в разработке.
-
-    section(id="scheme-tab", class="tab-content hidden")
-      h2(class="text-2xl font-semibold mb-4 text-[var(--text-primary)]") Схема помещения
-      p(class="text-[var(--text-secondary)] mb-4") Нарисуйте план помещения, укажите размеры и типы работ.
-      include ../components/room-editor.pug
-
-    section(id="settings-tab", class="tab-content hidden")
-      h2(class="text-2xl font-semibold mb-6 text-[var(--text-primary)]") Настройки профиля
-      form(id="master-settings-form", class="bg-[var(--bg-secondary)] p-6 rounded-xl border border-[var(--border)]")
-        div(class="space-y-4 max-w-2xl")
-          div(class="grid grid-cols-1 md:grid-cols-2 gap-4")
-            input(
-              type="text",
-              id="master-city",
-              placeholder="Город (по умолчанию)",
-              class="p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-            )
-            select(
-              id="master-tax-status",
-              class="p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-            )
-              option(value="self_employed") Самозанятый
-              option(value="individual_entrepreneur") ИП
-              option(value="unregistered") Не оформлен
-          input(
-            type="text",
-            id="master-fullname",
-            placeholder="ФИО мастера",
-            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-          )
-          div(class="grid grid-cols-2 gap-4")
-            input(
-              type="text",
-              id="master-passport-series",
-              placeholder="Серия паспорта",
-              class="p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-            )
-            input(
-              type="text",
-              id="master-passport-number",
-              placeholder="Номер паспорта",
-              class="p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-            )
-          input(
-            type="text",
-            id="master-passport-issued-by",
-            placeholder="Кем выдан паспорт",
-            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-          )
-          input(
-            type="tel",
-            id="master-phone",
-            placeholder="Телефон мастера",
-            class="w-full p-2 rounded border border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-          )
-          button(
-            type="submit",
-            class="bg-[var(--accent)] text-[var(--bg-primary)] px-4 py-2 rounded hover:opacity-90 transition focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
-          ) Сохранить профиль
-        div(id="profile-message", class="mt-4 text-sm hidden")
-
+  //- Библиотеки
   script(src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")
   script(src="/js/vendor/DejaVuSans_normal.js")
   script(src="/js/vendor/DejaVuSans_Bold_normal.js")
-  script(src="/js/cabinet/auth.js")
-  script(src="/js/cabinet/tabs.js")
-  script(src="/js/cabinet/profile.js")
-  script(src="/js/cabinet/contract.js")
-  script(src="/js/cabinet/estimate.js")
-  script(src="/js/cabinet/acts.js")
-  script(src="/js/cabinet/materials.js")
-  script(src="/js/cabinet/scheme.js")
+  script(src="/js/data/base-knowledge.js")
+  
+  //- Core (общие утилиты)
+  script(src="/js/cabinet/core/utils.js")
+  script(src="/js/cabinet/core/constants.js")
+  script(src="/js/cabinet/core/storage.js")
+  
+  //- Модули сметы
+  script(src="/js/cabinet/modules/estimate/estimate.js")
+  
+  //- Остальные модули
+  script(src="/js/cabinet/modules/auth/auth.js")
+  script(src="/js/cabinet/modules/tabs/tabs.js")
+  script(src="/js/cabinet/modules/profile/profile.js")
+  script(src="/js/cabinet/modules/contract/contract.js")
+  script(src="/js/cabinet/modules/acts/acts.js")
+  script(src="/js/cabinet/modules/materials/materials.js")
+  script(src="/js/cabinet/modules/scheme/scheme.js")
+  
+  //- База знаний
+  script(src="/js/data/base-knowledge.js")
