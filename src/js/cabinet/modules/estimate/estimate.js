@@ -59,8 +59,24 @@
   }
 
   function updateItem(action, index, value) {
-    if (action === 'remove' || action === 'removeGroup') {
+    if (action === 'remove') {
       estimateItems.splice(index, 1);
+      render();
+      return;
+    }
+
+    if (action === 'removeGroup') {
+      const groupItem = estimateItems[index];
+      if (!groupItem || groupItem.type !== 'group') return;
+
+      // Удаляем саму группу и все работы до следующей группы.
+      let deleteCount = 1;
+      for (let i = index + 1; i < estimateItems.length; i++) {
+        if (estimateItems[i].type === 'group') break;
+        deleteCount++;
+      }
+
+      estimateItems.splice(index, deleteCount);
       render();
       return;
     }

@@ -468,6 +468,8 @@
     loadCategories,
     loadWorksByCategory,
     updatePreviewTotal,
+    addUserCategory,
+    addUserWork,
     setGroupOptions,
     setSelectedGroupIndex
   };
