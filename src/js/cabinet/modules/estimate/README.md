@@ -14,7 +14,7 @@
 - **`base-knowledge.js`** — глобальная база знаний (категории и виды работ) из `src/js/data/base-knowledge.js`
 - **`localStorage`** — хранение текущей и всех смет
 - **`jspdf.umd.min.js`**, **`DejaVuSans_normal.js`** — для генерации PDF (шрифт DejaVuSans, обычное начертание)
-- **`html2pdf` НЕ используется** — PDF генерируется через `jsPDF` + `jspdf-autotable` (или ручная отрисовка)
+- **`html2pdf` НЕ используется** — PDF генерируется через ручную отрисовку средствами `jsPDF`
 
 ## Структура папок после рефакторинга
 
@@ -39,9 +39,9 @@ src/js/cabinet/modules/estimate/
 ### `estimateUI.js`
 | Функция | Описание |
 |---------|----------|
-| `renderEstimateTable(items)` | Отрисовывает таблицу сметы в браузере, добавляет кнопки удаления, поля редактирования цены и количества |
+| `renderEstimateTable(items)` | Отрисовывает таблицу сметы в браузере, добавляет кнопки удаления и поле редактирования цены |
 | `updateTotalDisplay(total)` | Обновляет отображение итоговой суммы |
-| `setCallbacks(callbacks)` | Устанавливает колбэк `onPriceChange` (вызывается при изменении цены или количества) |
+| `setCallbacks(callbacks)` | Устанавливает колбэк `onPriceChange` (вызывается при изменении цены/удалении) |
 
 **Колбэки:**
 - `onPriceChange(operation, index, value)` — `operation` может быть `'remove'`, `'removeGroup'`, `'price'`
@@ -80,7 +80,6 @@ src/js/cabinet/modules/estimate/
 | `estimate-save-btn` | button | Сохранить смету |
 | `estimate-clear-btn` | button | Очистить все позиции |
 | `estimate-pdf-btn` | button | Скачать PDF |
-| `estimate-show-user-works` | checkbox | Показывать мои добавленные работы (устарел, теперь всегда true) |
 | `estimate-new-category-name` | input | Название нового раздела (для добавления) |
 | `estimate-add-category-btn` | button | Добавить новый раздел |
 | `estimate-delete-category-btn` | button | Удалить выбранный пользовательский раздел |
